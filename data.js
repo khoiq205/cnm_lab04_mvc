@@ -1,6 +1,6 @@
 const courses = [
     {
-        id: '1',
+        id: 1,
         name: 'Cơ sở dữ liệu',
         course_type: 'Cơ sở',
         semester: 'HK1-2020-2021',
