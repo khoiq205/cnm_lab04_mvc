@@ -9,11 +9,37 @@
 </head>
 
 <body>
+    <script>
+        const idRegex = /^[0-9]+$/;
+        const nameRegex = /^[a-zA-Z]+$/;
+        function validateForm() {
+            var id = document.forms["save"]["id"].value;
+            if (id == ""|| !idRegex.test(id)) {
+                document.getElementById("errorId").innerHTML = "id không hợp lệ!";
+                return false;
+            }else{
+                document.getElementById("errorId").innerHTML = "";
+            }
+            var name = document.forms["save"]["name"].value;
+            if (name == "" || !nameRegex.test(name)) {
+                document.getElementById("errorName").innerHTML = "name không hợp lệ!";
+                return false;
+            }
+            return true;
+        }
+        function handleClick(event){
+            if(!validateForm()){
+                event.preventDefault();
+            }
+        }
+    </script>
     <div class="content">
-        <form action="/save" method="post">
+        <form action="/save" id="save" method="post">
             <input type="text" name="id" placeholder="Nhập id...">
             <br>
+            <h4 id="errorId"></h4>
             <input type="text" name="name" placeholder="Nhập name...">
+            <h4 id="errorName"></h4>
             <br>
             <input type="text" name="course_type" placeholder="Nhập course_type...">
             <br>
@@ -21,7 +47,7 @@
             <br>
             <input type="text" name="department" placeholder="Nhập department...">
             <br>
-            <button type="submit">Submit</button>
+            <button type="submit" onclick="handleClick(event)">Submit</button>
         </form>
         <form action="/delete" method="post">
             <table>
